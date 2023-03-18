@@ -1,0 +1,307 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+ @mixin mobile-only {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @media (min-width: 640.1px) {
+    @content;
+  }
+}
+@mixin with-fine-pointer {
+  @media (pointer: fine) {
+    @content;
+  }
+}
+
+.peak-teammembers-query-loop {
+  --card-text-spacing: 20px;
+  --toggle-size: clamp(48px, 4.6vw, 64px);
+
+  & a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 700;
+  }
+  & p strong {
+    font-size: var(--wp--preset--font-size--x-large);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000;
+    background-color: var(--wp--preset--color--peak-green, #31ff3f);
+    padding: .6em;
+    border-radius: .75em;
+    display: block;
+  }
+  .teammember {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all .5s ease-out;
+  }
+  .teammember.loaded {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  & .wp-block-post {
+    background-color: var(--wp--preset--color--base, #000);
+    color: var(--wp--preset--color--contrast, #FFF);
+    border-radius: 0 0 0 0;
+    transition: all .2s ease-in-out;
+    height: fit-content;
+  }
+  @include with-fine-pointer {
+    & .wp-block-post:not(.teammember-full-popup):hover {
+      background-color: var(--wp--preset--color--contrast, #FFF);
+      color: var(--wp--preset--color--base, #000);
+      border-radius: 0 0 20px 0;
+    }
+  }
+  & .wp-block-post,
+  & .wp-block-post > .wp-block-group__inner-container {
+    position: relative;
+    cursor: pointer;
+    padding-bottom: var(--card-text-spacing);
+  }
+  @include with-fine-pointer {
+    & .wp-block-post:not(.teammember-full-popup):hover > .wp-block-group__inner-container {
+      background-color: var(--wp--preset--color--contrast);
+      border-radius: 0 0 20px 0;
+    }
+  }
+  // Hide all children except the ones we need.
+  & .wp-block-post .entry-content > .wp-block-group > :not(.card-subtitle, .teammember-toggle) {
+    display: none;
+  }
+  
+  & .wp-block-post .wp-block-post-featured-image {
+    margin: 0;
+    aspect-ratio: 32/36;
+    width: 100%;
+  
+    @include tablet-up {
+      aspect-ratio: 32/48;
+    }
+  
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    & figcaption {
+      display: none;
+    }
+  }
+  & .wp-block-post .wp-block-post-title {
+    font-size: var(--wp--preset--font-size--large, 24px);
+    padding: .4em 0 .8em 0;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin: var(--card-text-spacing) 0 0 0;
+  }
+  & .wp-block-post .card-subtitle {
+    font-size: var(--wp--preset--font-size--medium, 20px);
+    min-height: 2em;
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    align-items: center;
+    padding-top: var(--card-text-spacing);
+  }
+  & .wp-block-post .wp-block-post-title ,
+  & .wp-block-post .card-subtitle {
+    margin-left: var(--card-text-spacing);
+    margin-right: var(--card-text-spacing);
+    position: relative;
+  
+    &:before {
+      content: '';
+      position: absolute;
+      left: calc( var(--card-text-spacing) * -1);
+      top: 0;
+      height: 100%;
+      width: 1px;
+      border-left: 1px solid var(--wp--preset--color--contrast, #FFF);
+    }
+  }
+  & .wp-block-post .card-subtitle:before {
+    top: -1px;
+  }
+  .teammember-toggle {
+    background-image: url("data:image/svg+xml,%3Csvg id='Group_302' data-name='Group 302' xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg id='Ellipse_3' data-name='Ellipse 3' fill='none' stroke='%2331FF3F' stroke-width='2'%3E%3Ccircle cx='32' cy='32' r='32' stroke='none'/%3E%3Ccircle cx='32' cy='32' r='31' fill='none'/%3E%3C/g%3E%3Cline id='Line_1' data-name='Line 1' x2='31.559' transform='translate(16.5 32.5)' fill='none' stroke='%2331FF3F' stroke-linecap='round' stroke-width='2'/%3E%3Cline id='Line_123' data-name='Line 123' x2='31.559' transform='translate(32.5 16.5) rotate(90)' fill='none' stroke='%2331FF3F' stroke-linecap='round' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: var(--toggle-size);
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+    margin: 0!important;
+    transform-origin: 50% 50%;
+    transform: rotate(0);
+    transition: transform .2s ease-in-out;
+    cursor: pointer;
+    flex: 0 0 var(--toggle-size);
+  }
+  @include with-fine-pointer {
+    .teammember:hover .teammember-toggle {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@keyframes teammember-in {
+  0% {
+    transform: translateY(100svh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes teammember-out {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100svh);
+  }
+}
+.teammember-full-popup.reverse {
+  animation: teammember-out .5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.teammember-full-popup {
+  --card-text-spacing: 15px;
+  transform-origin: 50% 100%;
+  animation: teammember-in .5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+
+  &.teammember {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    width: auto!important;
+    height: auto;
+    z-index: 1000;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: var(--wp--preset--color--contrast, #FFF);
+    color: var(--wp--preset--color--base, #000);
+    border-radius: 10px 10px 0 0;
+    padding: var(--card-text-spacing);
+  }
+  &.teammember {
+    background-color: var(--wp--preset--color--contrast, #FFF);
+    color: var(--wp--preset--color--base, #000);
+    cursor: default;
+  }
+  &.teammember > .wp-block-group__inner-container {
+    cursor: default;
+  }
+  &.teammember .entry-content > .wp-block-group > :not(.card-subtitle, .teammember-toggle) {
+    display: inherit;
+  }
+  &.teammember > .is-layout-flex,
+  &.teammember > .wp-block-group__inner-container > .is-layout-flex {
+    display: flex;
+  }
+  &.teammember .wp-block-post-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @include with-fine-pointer {
+    &.teammember:hover .teammember-toggle {
+      transform: rotate(225deg);
+    }
+  }
+  // This class for the links to linkedin and social that used to be in coin shape
+  &.teammember .card-full-content-coin-title,
+  &.teammember .card-subtitle {
+    display: none;
+  }
+  &.teammember .card-full-content-coin {
+    display: inline-block;
+
+    & img {
+      width: var(--toggle-size);
+    }
+  }
+  & .teammember-toggle {
+    transform: rotate(45deg);
+    margin-right: 0!important;
+  }
+  & .teammember-prevnext {
+    clear: both;
+    display: flex;
+    gap: var(--card-text-spacing);
+    justify-content: flex-end;
+    margin-top: calc( var(--toggle-size) * -1 - var(--card-text-spacing) );
+  }
+  & .teammember-next, & .teammember-prev {
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34.414 34.645'%3E%3Cg fill='none' stroke='%2331ff3f' stroke-linecap='round' stroke-width='2' data-name='Group 575'%3E%3Cpath d='M1 18.528h31.559' data-name='Line 115'/%3E%3Cpath d='M17.122 1.413 33 18.626 17.122 33.232' data-name='Path 279'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: var(--toggle-size);
+    cursor: pointer;
+    transform-origin: 50% 50%;
+    margin-top: var(--card-text-spacing);
+  }
+  & .teammember-prev {
+    transform: scaleX(-1);
+  }
+}
+
+
+@include tablet-up {
+  .teammember-full-popup {
+    --card-photo-height: 32vw;
+    --card-text-spacing: 20px;
+    --full-popup-photo-width: 33%;
+    position: relative;
+
+    &.teammember,
+    &.teammember > .wp-block-group__inner-container {
+      display: block;
+
+      & > :not(.wp-block-post-featured-image, .teammember-coin, .wp-block-group__inner-container) {
+        margin-left: calc( var(--full-popup-photo-width) + var(--card-text-spacing) * 2 );
+      }
+    }
+    &.teammember .wp-block-post-featured-image {
+      position: absolute;
+      left: var(--card-text-spacing);
+      top: var(--card-text-spacing);
+      width: var(--full-popup-photo-width);
+      aspect-ratio: 32/48;
+    }
+    &.teammember .wp-block-post-title {
+      margin-top: 0;
+      margin-right: 0;
+      font-size: var(--wp--preset--font-size--xx-large);
+      line-height: 1.2;
+      padding: .5em 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    & .teammember-toggle {
+      height: var(--toggle-size);
+      width: var(--toggle-size);
+      background-size: var(--toggle-size);
+
+      &:hover {
+        transform: rotate(45deg)!important;
+      }
+    }
+    &.teammember:hover .teammember-toggle {
+      transform: rotate(225deg);
+    }
+  }
+}

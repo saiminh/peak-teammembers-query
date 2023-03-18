@@ -1,0 +1,106 @@
+@mixin mobile-only {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @media (min-width: 640.1px) {
+    @content;
+  }
+}
+@mixin with-fine-pointer {
+  @media (pointer: fine) {
+    @content;
+  }
+}
+
+.peak-teammembers-query-loop-home {
+
+  & ul.wp-block-post-template {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    gap: var(--wp--preset--spacing--outer);
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  } 
+  & .teammember,
+  & .wp-block-post {
+    flex: 0 0 15%;
+    scroll-snap-align: start;
+    position: relative;
+    margin-top: 0!important;
+
+    @include mobile-only {
+      flex: 0 0 33%;
+    }
+
+    & .wp-block-post-featured-image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: border .5s ease-in-out;
+      border: 2px solid transparent;
+      
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all .5s ease-in-out;
+      }
+    }
+    @include with-fine-pointer {
+      &:hover .wp-block-post-featured-image {
+        border: 2px solid var(--wp--preset--color--peak-green);
+        
+        & img {
+          opacity: 0;
+        }
+      }
+    }
+    & .wp-block-post-title {
+      font-size: var(--wp--preset--font-size--small);
+      line-height: 1.2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin: 0;
+      padding-bottom: .5em;
+      opacity: 0;
+      transition: all .5s ease-in-out;
+      
+      @include mobile-only {
+        opacity: 1;
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+    }
+    @include with-fine-pointer {
+      &:hover .wp-block-post-title {
+        opacity: 1;
+      }
+    }
+  }
+  .home-teammember-link {
+    color: transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
