@@ -11,6 +11,14 @@
 // When editing a single founder post (exclude the query loop)
 body.post-type-teammember {
 
+  .wp-block-post-content {
+    padding: 1em;
+
+    & > div {
+      max-width: 1000px;
+    }
+  }
+
  .card-full-content-link-title {
    font-size: var(--wp--preset--font-size--medium)!important;
    font-weight: 400!important;
