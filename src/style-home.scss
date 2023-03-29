@@ -60,9 +60,9 @@
       &:hover .wp-block-post-featured-image {
         border: 2px solid var(--wp--preset--color--peak-green);
         
-        & img {
-          opacity: 0;
-        }
+        // & img {
+        //   opacity: 0;
+        // }
       }
     }
     & .wp-block-post-title {
@@ -89,11 +89,11 @@
         height: auto;
       }
     }
-    @include with-fine-pointer {
-      &:hover .wp-block-post-title {
-        opacity: 1;
-      }
-    }
+    // @include with-fine-pointer {
+    //   &:hover .wp-block-post-title {
+    //     opacity: 1;
+    //   }
+    // }
   }
   .home-teammember-link {
     color: transparent;

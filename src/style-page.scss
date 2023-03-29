@@ -31,14 +31,14 @@
     font-weight: 700;
   }
   & p strong {
-    font-size: var(--wp--preset--font-size--x-large);
-    font-weight: 700;
-    line-height: 1.2;
-    color: #000;
-    background-color: var(--wp--preset--color--peak-green, #31ff3f);
-    padding: .6em;
-    border-radius: .75em;
-    display: block;
+    font-size: var(--wp--preset--font-size--large);
+    font-weight: 500;
+  //   line-height: 1.2;
+  //   color: #000;
+  //   background-color: var(--wp--preset--color--peak-green, #31ff3f);
+  //   padding: .6em;
+  //   border-radius: .75em;
+  //   display: block;
   }
   .teammember {
     opacity: 0;
@@ -191,14 +191,10 @@
     z-index: 1000;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: var(--wp--preset--color--contrast, #FFF);
-    color: var(--wp--preset--color--base, #000);
+    background-color: var(--wp--preset--color--base, #FFF);
+    color: var(--wp--preset--color--contrast, #000);
     border-radius: 10px 10px 0 0;
     padding: var(--card-text-spacing);
-  }
-  &.teammember {
-    background-color: var(--wp--preset--color--contrast, #FFF);
-    color: var(--wp--preset--color--base, #000);
     cursor: default;
   }
   &.teammember > .wp-block-group__inner-container {
@@ -290,6 +286,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      &:before {
+        content: none;
+      }
     }
     & .teammember-toggle {
       height: var(--toggle-size);
