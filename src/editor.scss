@@ -38,13 +38,13 @@ body.post-type-teammember {
  }
  & p strong {
   font-size: var(--wp--preset--font-size--x-large);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.2;
-  color: #000;
-  background-color: var(--wp--preset--color--peak-green, #31ff3f);
-  padding: .6em;
-  border-radius: .75em;
-  display: block;
+  // color: #000;
+  // background-color: var(--wp--preset--color--peak-green, #31ff3f);
+  // padding: .6em;
+  // border-radius: .75em;
+  // display: block;
 }
 }
 
