@@ -222,6 +222,9 @@
   &.teammember .card-subtitle {
     display: none;
   }
+  &.teammember .teammember-full-content-coins {
+    position: absolute;
+  }
   &.teammember .card-full-content-coin {
     display: inline-block;
 
@@ -238,7 +241,8 @@
     display: flex;
     gap: var(--card-text-spacing);
     justify-content: flex-end;
-    margin-top: calc( var(--toggle-size) * -1 - var(--card-text-spacing) );
+    margin-top: 2em;
+    margin-bottom: 2em;
   }
   & .teammember-next, & .teammember-prev {
     width: var(--toggle-size);
