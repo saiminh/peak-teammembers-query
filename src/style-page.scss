@@ -131,6 +131,13 @@
       border-left: 1px solid var(--wp--preset--color--contrast, #FFF);
     }
   }
+  & .wp-block-post .card-subtitle {
+    color: transparent;
+
+    &.teammember-toggle {
+      opacity: 1;
+    }
+  }
   & .wp-block-post .card-subtitle:before {
     top: -1px;
   }
