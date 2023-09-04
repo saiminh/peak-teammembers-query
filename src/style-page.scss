@@ -112,8 +112,8 @@
     display: flex;
     justify-content: space-between;
     gap: 1em;
-    align-items: center;
-    padding-top: var(--card-text-spacing);
+    align-items: flex-start;
+    padding-top: calc(var(--card-text-spacing) * 0.75 );
   }
   & .wp-block-post .wp-block-post-title ,
   & .wp-block-post .card-subtitle {
@@ -132,7 +132,7 @@
     }
   }
   & .wp-block-post .card-subtitle {
-    color: transparent;
+    // color: transparent;
 
     &.teammember-toggle {
       opacity: 1;
@@ -224,9 +224,18 @@
       transform: rotate(225deg);
     }
   }
-  // This class for the links to linkedin and social that used to be in coin shape
-  &.teammember .card-full-content-coin-title,
   &.teammember .card-subtitle {
+    display: none; // Hide the subtitle in the popup
+    margin-left: 0;
+    min-height: auto;
+    font-size: var(--wp--preset--font-size--large);
+    
+    &:before {
+      content: none;
+    }
+  }
+  // This class for the links to linkedin and social that used to be in coin shape
+  &.teammember .card-full-content-coin-title {
     display: none;
   }
   &.teammember .teammember-full-content-coins {
